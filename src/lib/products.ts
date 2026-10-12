@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import type { Producto, RespuestaProductos } from "./types";
 
 const API_URL = process.env.API_BASE_URL;
@@ -26,6 +27,11 @@ export async function getProducto(id: number): Promise<Producto> {
   const response = await fetch(`${API_URL}/products/${id}`, {
     next: { revalidate: 60 },
   });
+
+  // Producto inexistente en Laravel
+  if (response.status === 404) {
+    notFound();
+  }
 
   if (!response.ok) {
     throw new Error("Error al obtener el producto");
