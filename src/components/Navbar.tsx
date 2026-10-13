@@ -1,10 +1,15 @@
+
 import Link from "next/link";
+import CarritoContador from "@/components/CarritoContador";
 
 export default function Navbar() {
   return (
     <header className="border-b border-gray-200 bg-white">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-5">
-        <Link href="/" className="text-xl font-bold text-gray-900">
+        <Link
+          href="/"
+          className="text-xl font-bold text-gray-900"
+        >
           E-Commerce
         </Link>
 
@@ -12,6 +17,8 @@ export default function Navbar() {
           <Link href="/" className="hover:text-black">
             Productos
           </Link>
+
+          <CarritoContador />
 
           <Link href="/cuenta" className="hover:text-black">
             Mi cuenta

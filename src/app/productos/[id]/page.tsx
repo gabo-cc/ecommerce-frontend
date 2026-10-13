@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getProducto } from "@/lib/products";
+import AgregarCarrito from "@/components/AgregarCarrito";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -77,6 +78,11 @@ async function ProductoDetalle({ params }: Props) {
           </p>
 
           <p className="mt-2 text-sm text-gray-500">SKU: {producto.sku}</p>
+
+          {/* Botón para agregar al carrito */}
+          <div className="mt-8 max-w-xs">
+            <AgregarCarrito producto={producto} />
+          </div>
         </div>
       </div>
     </main>
@@ -99,14 +105,17 @@ function ProductoSkeleton() {
       <div className="h-5 w-40 animate-pulse rounded bg-gray-200" />
 
       <div className="mt-10 grid gap-10 rounded-2xl border border-gray-200 p-8 md:grid-cols-2">
+        {/* Skeleton de la imagen */}
         <div className="aspect-square animate-pulse rounded-xl bg-gray-200" />
 
+        {/* Skeleton de la información */}
         <div className="flex flex-col justify-center space-y-5">
           <div className="h-10 w-3/4 animate-pulse rounded bg-gray-200" />
           <div className="h-5 w-full animate-pulse rounded bg-gray-200" />
           <div className="h-5 w-2/3 animate-pulse rounded bg-gray-200" />
           <div className="h-8 w-32 animate-pulse rounded bg-gray-200" />
           <div className="h-5 w-24 animate-pulse rounded bg-gray-200" />
+          <div className="h-12 w-48 animate-pulse rounded-lg bg-gray-200" />
         </div>
       </div>
     </main>

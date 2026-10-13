@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Producto } from "@/lib/types";
+import AgregarCarrito from "@/components/AgregarCarrito";
 
 interface Props {
   producto: Producto;
@@ -26,7 +27,6 @@ export default function ProductoCard({ producto }: Props) {
           )}
         </div>
       </Link>
-
       <div className="p-5">
         <h2 className="text-lg font-semibold text-gray-900">{producto.name}</h2>
 
@@ -49,6 +49,10 @@ export default function ProductoCard({ producto }: Props) {
         >
           Ver producto
         </Link>
+      </div>
+      \
+      <div className="mt-3">
+        <AgregarCarrito producto={producto} />
       </div>
     </article>
   );
