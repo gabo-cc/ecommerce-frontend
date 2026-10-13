@@ -50,8 +50,9 @@ export default function CheckoutContenido() {
         return;
       }
 
+      sessionStorage.setItem("checkout_order_id", String(resultado.orderId));
+
       router.push(`/checkout/pago/${resultado.orderId}`);
-    } catch {
       setError(
         "No se pudo confirmar la orden. Revisa tus compras antes de intentarlo nuevamente.",
       );

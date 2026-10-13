@@ -78,7 +78,7 @@ async function ConfirmacionContenido({ params }: Props) {
           <p className="font-semibold text-green-700">Pagada</p>
         </div>
 
-        <ConfirmarCompra />
+        <ConfirmarCompra orderId={orden.id} />
       </div>
     </main>
   );

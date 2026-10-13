@@ -4,20 +4,33 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useCarrito } from "@/store/cart-store";
 
-export default function ConfirmarCompra() {
+interface Props {
+  orderId: number;
+}
+
+export default function ConfirmarCompra({ orderId }: Props) {
   useEffect(() => {
-    // Limpiar el carrito solo después de recuperar su estado.
-    if (useCarrito.persist.hasHydrated()) {
-      useCarrito.getState().vaciarCarrito();
+    const ordenGuardada = sessionStorage.getItem("checkout_order_id");
+
+    // No vaciar el carrito al visitar compras anteriores
+    if (ordenGuardada !== String(orderId)) {
       return;
     }
 
-    const unsubscribe = useCarrito.persist.onFinishHydration(() => {
+    function limpiarCarrito() {
       useCarrito.getState().vaciarCarrito();
-    });
+      sessionStorage.removeItem("checkout_order_id");
+    }
+
+    if (useCarrito.persist.hasHydrated()) {
+      limpiarCarrito();
+      return;
+    }
+
+    const unsubscribe = useCarrito.persist.onFinishHydration(limpiarCarrito);
 
     return unsubscribe;
-  }, []);
+  }, [orderId]);
 
   return (
     <div className="mt-8">
