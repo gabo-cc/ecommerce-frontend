@@ -5,9 +5,10 @@ import AgregarCarrito from "@/components/AgregarCarrito";
 
 interface Props {
   producto: Producto;
+  priority?: boolean;
 }
 
-export default function ProductoCard({ producto }: Props) {
+export default function ProductoCard({ producto, priority = false }: Props) {
   return (
     <article className="overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-md">
       <Link href={`/productos/${producto.id}`}>
@@ -18,6 +19,7 @@ export default function ProductoCard({ producto }: Props) {
               alt={producto.name}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              preload={priority}
               className="object-contain p-6"
             />
           ) : (
@@ -27,6 +29,7 @@ export default function ProductoCard({ producto }: Props) {
           )}
         </div>
       </Link>
+
       <div className="p-5">
         <h2 className="text-lg font-semibold text-gray-900">{producto.name}</h2>
 
@@ -50,7 +53,7 @@ export default function ProductoCard({ producto }: Props) {
           Ver producto
         </Link>
       </div>
-      \
+
       <div className="mt-3">
         <AgregarCarrito producto={producto} />
       </div>

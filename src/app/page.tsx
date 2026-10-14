@@ -30,8 +30,12 @@ export default async function HomePage({ searchParams }: Props) {
         <p>No hay productos disponibles.</p>
       ) : (
         <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {resultado.data.map((producto) => (
-            <ProductoCard key={producto.id} producto={producto} />
+          {resultado.data.map((producto, index) => (
+            <ProductoCard
+              key={producto.id}
+              producto={producto}
+              priority={index === 0}
+            />
           ))}
         </section>
       )}
