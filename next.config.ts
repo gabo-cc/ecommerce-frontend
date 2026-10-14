@@ -3,7 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     // Permitir imágenes locales solo durante el desarrollo
-    dangerouslyAllowLocalIP: process.env.NODE_ENV === "development",
+    dangerouslyAllowLocalIP:
+      process.env.NODE_ENV === "development" ||
+      process.env.ALLOW_LOCAL_IMAGES === "true",
 
     remotePatterns: [
       {
