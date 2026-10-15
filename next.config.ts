@@ -2,25 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // Permitir imágenes locales solo durante el desarrollo
-    dangerouslyAllowLocalIP:
-      process.env.NODE_ENV === "development" ||
-      process.env.ALLOW_LOCAL_IMAGES === "true",
-
     remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "127.0.0.1",
-        port: "8000",
-        pathname: "/storage/products/**",
-      },
+      // Imágenes públicas de Supabase Storage
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.pexels.com",
+        hostname: "xpyazbwzjpqmrvaoorbd.supabase.co",
+        pathname: "/storage/v1/object/public/productos/**",
       },
     ],
   },
