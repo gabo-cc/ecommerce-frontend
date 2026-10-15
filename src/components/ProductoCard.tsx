@@ -25,6 +25,7 @@ export default function ProductoCard({ producto, priority = false }: Props) {
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               preload={priority}
+              fetchPriority={priority ? "high" : "auto"}
               className="object-contain p-6 transition-transform duration-300 hover:scale-105"
             />
           ) : (
