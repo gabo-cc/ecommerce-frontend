@@ -1,16 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
+  images: {
+    remotePatterns: [
+      // Imágenes públicas de Supabase Storage
+      {
+        protocol: "https",
+        hostname: "xpyazbwzjpqmrvaoorbd.supabase.co",
+        pathname: "/storage/v1/object/public/productos/**",
       },
-    },
+    ],
   },
 };
 
